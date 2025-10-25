@@ -5,12 +5,14 @@ const router = express.Router();
 
 router.post("/signup" , signup)
 
+
 router.get("/login" , (req,res) => {
     res.send("login endpoint")
-})
+    console.log("login hit")
+});
 
 router.get("/logout" , (req,res) => {
     res.send("logout endpoint")
-}) 
+});
 
-export default router
+export default router;
