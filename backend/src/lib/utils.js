@@ -9,6 +9,7 @@ export const generateToken = (userId, res) => {
         throw new Error("JWT_SECRET is not defined");
     }
 
+    
     const token = jwt.sign({ userId }, JWT_SECRET, {
         expiresIn: "7d",
     });
