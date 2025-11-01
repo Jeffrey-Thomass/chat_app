@@ -14,6 +14,7 @@ const port = ENV.PORT
 app.use(express.json()) // req.body
 app.use(cookieParser())
 
+
 app.use("/api/auth", authRouter)
 app.use("/api/messages", messageRouter)
 
