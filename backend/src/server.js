@@ -5,12 +5,17 @@ import messageRouter from "./routes/message.route.js";
 import path from "path";
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser"
+import cors from "cors"
 
 const app = express();
 
 const __dirname = path.resolve();  // returns the CWD 
 // console.log(__dirname)
 const port = ENV.PORT
+app.use(cors({
+    origin : ENV.CLIENT_URL ,
+    credentials : true
+}))
 app.use(express.json()) // req.body
 app.use(cookieParser())
 
