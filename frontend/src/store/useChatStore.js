@@ -9,7 +9,7 @@ export const useChatStore = create((set, get) => ({
     chats : [],
     messages : [],
     activeTab : "chats",
-    selectedUsers : null,
+    selectedUser : null,
     isUsersLoading :false,
     isMessagesLoading : false,
     isSoundEnabled : JSON.parse(localStorage.getItem("isSoundEnabled")) === "true",
@@ -63,8 +63,8 @@ export const useChatStore = create((set, get) => ({
 
     const optimisticMessage = {
       _id: tempId,
-      sender : authUser._id,
-      receiver : selectedUser._id,
+      senderId : authUser._id,
+      receiverId : selectedUser._id,
       text : messageData.text,
       image : messageData.image,
       createdAt : new Date().toISOString(),

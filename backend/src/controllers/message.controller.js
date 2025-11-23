@@ -85,7 +85,7 @@ export const getChatPartners = async (req , res ) => {
                     senderId : loggedInUserId,
                 },
                 {
-                    receiver : loggedInUserId
+                    receiverId : loggedInUserId
                 }
             ]
         })
