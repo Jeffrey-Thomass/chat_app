@@ -9,15 +9,24 @@ import MessagesLoadingSkeleton from "./MessagesLoadingSkeleton";
 
 
 export default function ChatContainer() {
-  const {
-    selectedUser,
-    getMessagesByUserId,
-    messages,
-    isMessagesLoading,
-    subscribeToMessages,
-    unsubscribeFromMessages,
-  } = useChatStore();
-  const { authUser } = useAuthStore();
+  // const {
+  //   selectedUser,
+  //   getMessagesByUserId,
+  //   messages,
+  //   isMessagesLoading,
+  //   subscribeToMessages,
+  //   unsubscribeFromMessages,
+  // } = useChatStore();
+  // const { authUser } = useAuthStore();
+  const selectedUser = useChatStore(state => state.selectedUser);
+  const getMessagesByUserId = useChatStore(state => state.getMessagesByUserId);
+  const messages = useChatStore(state => state.messages);
+  const isMessagesLoading = useChatStore(state => state.isMessagesLoading);
+  const subscribeToMessages = useChatStore(state => state.subscribeToMessages);
+  const unsubscribeFromMessages = useChatStore(state => state.unsubscribeFromMessages);
+
+  const authUser = useAuthStore(state => state.authUser);
+
   const messageEndRef = useRef(null);
   useEffect(() => {
     if (messageEndRef.current) {

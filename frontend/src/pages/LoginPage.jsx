@@ -8,7 +8,8 @@ import { MessageCircleIcon, LockIcon, MailIcon, UserIcon, LoaderIcon } from "luc
 
 export default function LoginPage() {
   const[formData , setFormData] = useState({ email : "", password : ""});
-  const {login , isLoggingIn} = useAuthStore();
+  const login = useAuthStore(state => state.login);
+  const isLoggingIn = useAuthStore(state => state.isLoggingIn);  
   const handleSubmit = (e) => {
     e.preventDefault();
     login(formData);
@@ -65,7 +66,7 @@ export default function LoginPage() {
                   </button>
                   </form>
                   <div className="mt-6 text-center">
-                  <Link to="/login" className="auth-link">
+                  <Link to="/signup" className="auth-link">
                     Don't have an account? Sign Up
                   </Link>
                 </div>

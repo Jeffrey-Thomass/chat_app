@@ -5,7 +5,11 @@ import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
 
 
 function ContactList() {
-  const { getAllContacts, allContacts, setSelectedUser, isUsersLoading } = useChatStore();
+  // const { getAllContacts, allContacts, setSelectedUser, isUsersLoading } = useChatStore();
+  const getAllContacts = useChatStore(state => state.getAllContacts);
+  const allContacts = useChatStore(state => state.allContacts);
+  const setSelectedUser = useChatStore(state => state.setSelectedUser);
+  const isUsersLoading = useChatStore(state => state.isUsersLoading);
 
 
   useEffect(() => {
