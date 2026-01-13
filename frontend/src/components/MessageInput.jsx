@@ -6,13 +6,17 @@ import toast from 'react-hot-toast';
 import { ImageIcon, SendIcon, XIcon } from "lucide-react";
 
 export default function MessageInput() {
-  const {playRandomSound} = useKeyboardSound();
+  // const {playRandomSound} = useKeyboardSound();
   const [text , setText] = useState('');
   const [imagePreview , setImagePreview] = useState(null);
 
   const fileInputRef = useRef(null);
 
-  const {sendMessage , isSoundEnabled} = useChatStore();
+  // const {sendMessage , isSoundEnabled} = useChatStore();
+  const playRandomSound = useKeyboardSound(state => state.playRandomSound);
+
+  const sendMessage = useChatStore(state => state.sendMessage);
+  const isSoundEnabled = useChatStore(state => state.isSoundEnabled);
 
   const handleSendMessage = (e) => {
     e.preventDefault();

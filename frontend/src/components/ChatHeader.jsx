@@ -7,7 +7,9 @@ import { useAuthStore } from "../store/useAuthStore";
 
 export default function chatHeader() {
   
-  const { selectedUser, setSelectedUser } = useChatStore();
+  // const { selectedUser, setSelectedUser } = useChatStore();
+  const selectedUser = useChatStore(state => state.selectedUser);
+  const setSelectedUser = useChatStore(state => state.setSelectedUser);
   useEffect(() => {
     const handleEscKey = (event) => {
       if (event.key === "Escape") setSelectedUser(null);
