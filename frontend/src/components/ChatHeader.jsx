@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useAuthStore } from "../store/useAuthStore.js";
 
 
-export default function chatHeader() {
+export default function ChatHeader() {
   
   // const { selectedUser, setSelectedUser } = useChatStore();
   const selectedUser = useChatStore(state => state.selectedUser);
@@ -40,7 +40,7 @@ export default function chatHeader() {
 
         <div>
           <h3 className="text-slate-200 font-medium">{selectedUser.fullName}</h3>
-          <p className="text-slate-400 text-sm">Online</p>
+          <p className="text-slate-400 text-sm">{isOnline ? "Online" : "Offline"}</p>
         </div>
       </div>
 
