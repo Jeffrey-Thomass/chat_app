@@ -32,12 +32,7 @@ function App() {
         <Route path='/signup' element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
       </Routes>
 
-      {/* 🔖 TEMP WATERMARK / NOTICE */}
-      {(
-        <div className="fixed  bottom-3 right-3 z-[9999] rounded-md bg-black/70 px-3 py-1 text-xs text-white pointer-events-none">
-          ⚠️ If the chat appears misaligned or doesn’t update correctly, please perform a hard refresh.
-        </div>
-      )}
+      
 
       <Toaster />
     </div>
