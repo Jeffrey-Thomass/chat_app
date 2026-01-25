@@ -5,10 +5,18 @@ import {ENV} from "../lib/env.js";
 export const socketAuthMiddleware = async (socket,next) => {
     try {
         // extract the token from http-only cookies
-        const token = socket.handshake.headers.cookie
-        ?.split("; ")
-        .find((row) => row.startsWith("jwt="))
-        ?.split("=")[1];
+        const cookieHeader = socket.handshake?.headers?.cookie;
+
+    if (!cookieHeader) {
+      console.log("Socket rejected: No cookies");
+      return next(new Error("Unauthorized"));
+    }
+
+    const token = cookieHeader
+      .split("; ")
+      .find(row => row.startsWith("jwt="))
+      ?.split("=")[1];
+
 
         if(!token){
             console.log("Socket connection rejected : No token found");
