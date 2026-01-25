@@ -5,21 +5,20 @@ import LoginPage from './pages/LoginPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
 import { useAuthStore } from './store/useAuthStore.js'
 import PageLoader from './components/pageLoader.jsx'
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 
 function App() {
 
-  // const {checkAuth , isCheckingAuth , authUser} = useAuthStore()
   const checkAuth = useAuthStore(state => state.checkAuth);
   const isCheckingAuth = useAuthStore(state => state.isCheckingAuth);
   const authUser = useAuthStore(state => state.authUser);
 
   useEffect(() => {
     checkAuth();
-  },[checkAuth])
-  console.log({authUser})
+  }, [checkAuth])
 
-  if(isCheckingAuth) return <PageLoader/>
+  if (isCheckingAuth) return <PageLoader />
+
   return (
     <div className='min-h-screen bg-slate-900 relative flex items-center justify-center p4 overflow-hidden'>
       {/* DECORATORS - GRID BG & GLOW SHAPES */}
@@ -28,11 +27,19 @@ function App() {
       <div className="absolute bottom-0 -right-4 size-96 bg-cyan-500 opacity-20 blur-[100px]" />
 
       <Routes>
-        <Route path='/' element={authUser ?<ChatPage /> : <Navigate to="/login" />}></Route>
-        <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to="/" />}></Route>
-        <Route path='/signup' element={!authUser ? <SignupPage /> : <Navigate to="/" />}></Route>
+        <Route path='/' element={authUser ? <ChatPage /> : <Navigate to="/login" />} />
+        <Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path='/signup' element={!authUser ? <SignupPage /> : <Navigate to="/" />} />
       </Routes>
-      <Toaster/>
+
+      {/* 🔖 TEMP WATERMARK / NOTICE */}
+      {(
+        <div className="fixed  bottom-3 right-3 z-[9999] rounded-md bg-black/70 px-3 py-1 text-xs text-white pointer-events-none">
+          ⚠️ If the chat appears misaligned or doesn’t update correctly, please perform a hard refresh.
+        </div>
+      )}
+
+      <Toaster />
     </div>
   )
 }
