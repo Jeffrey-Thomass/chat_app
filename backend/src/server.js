@@ -1,4 +1,5 @@
 import express from "express";
+import "dotenv/config"
 import { ENV } from "./lib/env.js";
 import authRouter from "./routes/auth.route.js";
 import messageRouter from "./routes/message.route.js";
@@ -12,7 +13,8 @@ import { app, server } from "./lib/socket.js";
 
 const __dirname = path.resolve();  // returns the CWD 
 // console.log(__dirname)
-const port = ENV.PORT
+// const port = ENV.PORT
+const port = process.env.PORT || ENV.PORT || 3000;
 app.use(cors({
     origin : ENV.CLIENT_URL ,
     credentials : true
@@ -34,7 +36,7 @@ if(ENV.NODE_ENV === "production") {
     })
 }
 
-server.listen(port, () => {
+server.listen(port,"0.0.0.0", () => {
     console.log("Server is running on port " + port);
     connectDB();
 });
